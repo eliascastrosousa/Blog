@@ -3,11 +3,14 @@
 {% block 'title' %} <title> Myfilms | News</title> {% endblock 'title' %}
 {% block content %}
 
-<header class="masthead" style="background-image: url('{% static "assets/img/home-bg.jpg" %}')" > 
+<header class="masthead" style="background-image: url('{% static "assets/img/news.webp" %}')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
-                
+                <div class="page-heading">
+                    <h1>Ultimas Notícias</h1>
+                    <h2>Jovem Nerd, Olhar Digital e Terra.com.br</h2>
+                </div>
             </div>
         </div>
     </div>
@@ -26,12 +29,12 @@
                 <p class="post-meta">
                     Posted by
                     <a href="{{item.url}}">{{item.source.name}}</a>
-                    on {{item.publishedAt }} </a> 
+                    on {{item.publishedAt }} </a>
                 </p>
             </div>
             <!-- Divider-->
             <hr class="my-4" />
-            {%  endfor %}
+            {% endfor %}
             <!-- Pager-->
         </div>
     </div>
