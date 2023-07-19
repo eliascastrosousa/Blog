@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} <title> Myfilms | Tv Shows </title> {% endblock 'title' %}
+{% block content %}
+
+<header class="masthead" style="background-image: url('{% static " assets/img/home-bg.jpg" %}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <form method="get" role="search" action="{% url 'tvshows' %}">{% csrf_token %}
+        <div class="row">
+            <div class="col-sm-3 col-md-4 mb-3">
+                <input class="form-control" type="search" placeholder="Search..." aria-label="Search" name="q">
+            </div>
+            <div class="col-sm-3 col-md-4 mb-3">
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
+                <a href="{% url 'tvshows' %}" class="btn" type="submit">Limpar</a>
+            </div>
+        </div>
+    </form>
+
+    <div class="row row-cols-auto justify-content-center">
+        {% for movie in search %}
+        <div class="col mb-3">
+            <div class="card" style="width: 380px; height: 640px;">
+                <img src="{{url_image}}{{movie.backdrop_path}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{movie.name}}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Data de Lançamento {{movie.release_date}}
+                    </h6>
+                    <p class="card-text">Sinopse: {{movie.overview | truncatewords:12}}</p>
+
+                    <p> <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg"
+                            style="height: 70px; width: 50px;"> {{movie.vote_average}} Baseado em {{movie.vote_count}}
+                        votos</p>
+
+                    <a href="#" class="btn btn-primary fixed">Ver mais</a>
+
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock content %}

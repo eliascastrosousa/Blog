@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %} <title> Myfilms | Create Post </title> {% endblock 'title' %}
+
+{% block content %}
+
+<header class="masthead" style="background-image: url('{% static "assets/img/createpost.jpeg" %}')" > 
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Criar Post</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="my-5">
+                    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="form-floating">
+                            <input class="form-control" type="text" maxlength="200" placeholder="Title" name="title"
+                                required />
+                            <label for="text">Title</label>
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" type="text" maxlength="200" placeholder="Subtitle" name="subtitle"
+                                required />
+                            <label for="text">Subtitle</label>
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" type="text" maxlength="200" placeholder="Slug" name="slug">
+                            <label for="text">Slug</label>
+                        </div>
+                        <div class="form-floating">
+                            <input class="form-control" type="file" name="image" required />
+                            <label for="text">Imagem</label>
+                        </div>
+                        <br>
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Content</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content" required></textarea>
+                        </div>
+                        
+                        <br>
+                        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Create Post</button>
+
+                        <a href="{% url 'home' %}"><input type="buttom"
+                                class="btn btn-light text-uppercase disabled" value="Back to Homepage"> </a>
+                    </form>
+                    {% if error %}
+                    <p>{{ error }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
